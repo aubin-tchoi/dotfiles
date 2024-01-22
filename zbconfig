@@ -1,0 +1,9 @@
+build_prefix:     _build
+threads:          6
+build_types:      ['r']
+install_dir_root: ~/local
+
+generator: Unix Makefiles
+cmake_cache:
+    USE_EXT_OPENCV: True
+    OpenCV_DIR: ~/local/opencv_static-4.6.0-u20.04-amd64/opencv_static_4_6_0/lib/cmake/opencv4
