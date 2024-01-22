@@ -49,7 +49,7 @@ done
 
 # Compilation stuff
 sudo apt-get install -y build-essential libtool linux-source linux-headers-"$(uname -r)"
-sudo apt-get install -y distcc ccache ninja-build curl wget mlocate htop git
+sudo apt-get install -y distcc ccache ninja-build curl wget mlocate htop git gnome-tweaks
 
 # Terminator
 sudo apt-get install -y terminator
