@@ -1,0 +1,28 @@
+[pull]
+    ff = only
+	rebase = true
+
+[alias]
+    feap = fetch -p
+    co = checkout
+    st = status
+	cob = checkout -b
+	cm = commit -m
+    puf = push --force-with-lease
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+[core]
+	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesFile = ~/.gitignore
+[init]
+	defaultBranch = main
+
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
