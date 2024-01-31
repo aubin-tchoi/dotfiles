@@ -48,8 +48,7 @@ for name in gitconfig gitignore zbconfig zshrc; do
 done
 
 # Compilation stuff
-sudo apt-get install -y build-essential libtool linux-source linux-headers-"$(uname -r)"
-sudo apt-get install -y distcc ccache ninja-build curl wget mlocate htop git gnome-tweaks
+sudo apt-get install -y build-essential libtool linux-source linux-headers-"$(uname -r)" distcc ccache ninja-build
 
 # Terminator
 sudo apt-get install -y terminator
@@ -65,7 +64,7 @@ sudo snap connect cloudcompare:removable-media :removable-media
 sudo snap install cmake
 
 # Useful third parties
-sudo apt-get install -y meld adwaita-icon-theme-full trash-cli
+sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip
 
 # Refresh the current terminal with the newly installed configuration
 exec zsh
