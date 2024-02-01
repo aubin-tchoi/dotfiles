@@ -11,6 +11,7 @@
     puf = push --force-with-lease
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    pushd = push -u origin HEAD
 
 [core]
 	autocrlf = input
