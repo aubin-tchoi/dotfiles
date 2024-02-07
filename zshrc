@@ -70,7 +70,7 @@ plugins=(
 )
 
 ofd() {
-	nautilus . &
+  nautilus . &
 }
 
 alias charm=pycharm-professional
@@ -79,6 +79,7 @@ alias scls="screen -ls"
 alias scr="screen -r"
 alias scS="screen -S"
 alias gittoken="cat ~/gitlab | xclip -selection clipboard"
+alias cpp="rsync -a --info=progress2"
 
 teamconnect () {
   TEAM_ID=$(cat ~/teamviewer/"$1".teamid)
