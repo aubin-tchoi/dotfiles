@@ -30,10 +30,19 @@ sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/ins
 ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins
 mkdir -p "$ZSH_PLUGINS_DIR"
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
-  echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
+  echo "-----> Installing zsh plugin 'zsh-autosuggestions'..."
   git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS_DIR"/zsh-autosuggestions
+  echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS_DIR"/zsh-syntax-highlighting
+  echo "-----> Installing zsh plugin 'you-should-use'..."
+  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_PLUGINS_DIR"/you-should-use
+  echo "-----> Installing zsh plugin 'zsh-bat'..."
+  git clone https://github.com/fdellwing/zsh-bat.git "$ZSH_PLUGINS_DIR"/zsh-bat
 fi
+
+# bat: prettier cat
+sudo apt-get install -y bat
+sudo ln -s /bin/batcat /bin/bat
 
 # Install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
