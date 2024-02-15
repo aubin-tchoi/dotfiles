@@ -58,6 +58,9 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  you-should-use
+  zsh-bat
+  copybuffer
   sudo
   dirhistory
   history
@@ -71,6 +74,11 @@ plugins=(
 
 ofd() {
   nautilus . &
+}
+
+function copydir {
+  emulate -L zsh
+  print -n $PWD | clipcopy
 }
 
 alias charm=pycharm-professional
