@@ -27,7 +27,7 @@ sudo apt install -y zsh
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 # Plugins
-ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins
+ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
 mkdir -p "$ZSH_PLUGINS_DIR"
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "-----> Installing zsh plugin 'zsh-autosuggestions'..."
