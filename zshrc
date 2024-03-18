@@ -73,7 +73,7 @@ plugins=(
 )
 
 ofd() {
-  nautilus . &
+  nautilus . &>/dev/null 2>&1 &
 }
 
 function copydir {
@@ -81,7 +81,6 @@ function copydir {
   print -n $PWD | clipcopy
 }
 
-alias charm=pycharm-professional
 source $ZSH/oh-my-zsh.sh
 alias scls="screen -ls"
 alias scr="screen -r"
