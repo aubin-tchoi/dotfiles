@@ -1,4 +1,7 @@
 [global_config]
+  title_hide_sizetext = True
+  title_transmit_bg_color = "#241f31"
+  title_inactive_bg_color = "#3d3846"
 [keybindings]
 [profiles]
   [[default]]
@@ -15,4 +18,5 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
 [plugins]
