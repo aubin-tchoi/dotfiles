@@ -48,7 +48,7 @@ sudo ln -s /bin/batcat /bin/bat
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
 # Backup old config files and symlink new ones
-for name in gitconfig gitignore zbconfig zshrc; do
+for name in gitconfig gitignore zbconfig zshrc config/terminator/config; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
     backup "$target"
@@ -73,7 +73,14 @@ sudo snap connect cloudcompare:removable-media :removable-media
 sudo snap install cmake
 
 # Useful third parties
-sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip
+sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip
+
+# Fonts and theme
+curl -SL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -o JetBrainsMono-2.304.zip
+unzip JetBrainsMono-2.304.zip "fonts/ttf/*.ttf" "JetBrainsMono"
+sudo cp JetBrainsMono/ttf/*.ttf /usr/share/fonts/
+rm JetBrainsMono-2.304.zip
+rm -r JetBrainsMono
 
 # Refresh the current terminal with the newly installed configuration
 exec zsh
