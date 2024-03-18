@@ -107,6 +107,14 @@ teamconnect () {
 # source /opt/ros/noetic/setup.zsh
 # source ~/catkin_ws/devel/setup.zsh
 
+export PDM_GLSL=$HOME/projects/pdm/src/pdm/vis/glsl
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/local/zp"
+export PATH="$PATH:$HOME/local/zb"
+export PATH="$PATH:$HOME/local/diff-so-fancy"
+export PATH="$PATH:$HOME/local/pdm/bin:$HOME/local/pdm/exwayz_3d_mapping"
+export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
