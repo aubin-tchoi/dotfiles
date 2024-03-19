@@ -82,6 +82,12 @@ sudo cp JetBrainsMono/ttf/*.ttf /usr/share/fonts/
 rm JetBrainsMono-2.304.zip
 rm -r JetBrainsMono
 
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.gedit.preferences.editor scheme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas'
+
 # Refresh the current terminal with the newly installed configuration
 exec zsh
 
