@@ -76,6 +76,12 @@ sudo snap install cmake
 sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip
 
 # Fonts and theme
+P10K_REPO="https://github.com/romkatv/powerlevel10k-media/raw/master"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Regular.ttf" -o "/usr/share/fonts/MesloLGS NF Regular.ttf"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Bold.ttf" -o "/usr/share/fonts/MesloLGS NF Bold.ttf"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Italic.ttf" -o "/usr/share/fonts/MesloLGS NF Italic.ttf"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Bold%20Italic.ttf" -o "/usr/share/fonts/MesloLGS NF Bold Italic.ttf"
+
 curl -SL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -o JetBrainsMono-2.304.zip
 unzip JetBrainsMono-2.304.zip "fonts/ttf/*.ttf" -d "JetBrainsMono"
 sudo cp JetBrainsMono/fonts/ttf/*.ttf /usr/share/fonts/
