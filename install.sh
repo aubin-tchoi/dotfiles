@@ -77,8 +77,8 @@ sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-ico
 
 # Fonts and theme
 curl -SL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -o JetBrainsMono-2.304.zip
-unzip JetBrainsMono-2.304.zip "fonts/ttf/*.ttf" "JetBrainsMono"
-sudo cp JetBrainsMono/ttf/*.ttf /usr/share/fonts/
+unzip JetBrainsMono-2.304.zip "fonts/ttf/*.ttf" -d "JetBrainsMono"
+sudo cp JetBrainsMono/fonts/ttf/*.ttf /usr/share/fonts/
 rm JetBrainsMono-2.304.zip
 rm -r JetBrainsMono
 
