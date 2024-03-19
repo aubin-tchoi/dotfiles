@@ -48,7 +48,7 @@ sudo ln -s /bin/batcat /bin/bat
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
 # Backup old config files and symlink new ones
-for name in gitconfig gitignore zbconfig zshrc config/terminator/config; do
+for name in gitconfig gitignore zbconfig zshrc config/terminator/config p10k.zsh; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
     backup "$target"
