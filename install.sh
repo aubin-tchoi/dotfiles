@@ -29,19 +29,22 @@ sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/ins
 # Plugins
 ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
 mkdir -p "$ZSH_PLUGINS_DIR"
-if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
   echo "-----> Installing zsh plugin 'zsh-autosuggestions'..."
   git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS_DIR"/zsh-autosuggestions
+fi
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS_DIR"/zsh-syntax-highlighting
+fi
+if [ ! -d "$ZSH_PLUGINS_DIR/you-should-use" ]; then
   echo "-----> Installing zsh plugin 'you-should-use'..."
   git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_PLUGINS_DIR"/you-should-use
+fi
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-bat" ]; then
   echo "-----> Installing zsh plugin 'zsh-bat'..."
   git clone https://github.com/fdellwing/zsh-bat.git "$ZSH_PLUGINS_DIR"/zsh-bat
 fi
-
-mkdir "$ZSH_PLUGINS_DIR"/poetry
-poetry completions zsh > "$ZSH_PLUGINS_DIR"/poetry/_poetry
 
 # bat: prettier cat
 sudo apt-get install -y bat
@@ -77,6 +80,14 @@ sudo snap install cmake
 
 # Useful third parties
 sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip
+
+# Poetry
+curl -sSL https://install.python-poetry.org | python3 -
+if [ ! -d "$ZSH_PLUGINS_DIR/poetry" ]; then
+  echo "-----> Installing zsh plugin 'poetry'..."
+  mkdir "$ZSH_PLUGINS_DIR"/poetry
+  "$HOME"/.local/bin/poetry completions zsh > "$ZSH_PLUGINS_DIR"/poetry/_poetry
+fi
 
 # Fonts and theme
 P10K_REPO="https://github.com/romkatv/powerlevel10k-media/raw/master"
