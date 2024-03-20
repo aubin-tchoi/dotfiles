@@ -77,6 +77,7 @@ plugins=(
   pyenv
   poetry
   z
+  autoswitch_virtualenv
 )
 
 ofd() {
