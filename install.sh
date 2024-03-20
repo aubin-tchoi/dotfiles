@@ -46,6 +46,9 @@ if [ ! -d "$ZSH_PLUGINS_DIR/zsh-bat" ]; then
   echo "-----> Installing zsh plugin 'zsh-bat'..."
   git clone https://github.com/fdellwing/zsh-bat.git "$ZSH_PLUGINS_DIR"/zsh-bat
 fi
+if [ ! -d "$ZSH_PLUGINS_DIR/autoswitch_virtualenv" ]; then
+  git clone https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git "$ZSH_PLUGINS_DIR"/autoswitch_virtualenv
+fi
 
 # bat: prettier cat
 sudo apt-get install -y bat
@@ -80,7 +83,7 @@ sudo snap connect cloudcompare:removable-media :removable-media
 sudo snap install cmake
 
 # Useful third parties
-sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip
+sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip python-is-python3
 
 # Poetry
 curl -sSL https://install.python-poetry.org | python3 -
