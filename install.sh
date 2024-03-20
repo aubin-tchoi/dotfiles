@@ -21,8 +21,9 @@ symlink() {
   fi
 }
 
+sudo apt update && sudo apt upgrade
 # ZSH
-sudo apt install -y zsh
+sudo apt install -y zsh git wget
 # Oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
