@@ -40,6 +40,9 @@ if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   git clone https://github.com/fdellwing/zsh-bat.git "$ZSH_PLUGINS_DIR"/zsh-bat
 fi
 
+mkdir "$ZSH_PLUGINS_DIR"/poetry
+poetry completions zsh > "$ZSH_PLUGINS_DIR"/poetry/_poetry
+
 # bat: prettier cat
 sudo apt-get install -y bat
 sudo ln -s /bin/batcat /bin/bat
