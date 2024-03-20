@@ -83,7 +83,7 @@ sudo snap connect cloudcompare:removable-media :removable-media
 sudo snap install cmake
 
 # Useful third parties
-sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip python-is-python3 wireshark-common
+sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip python-is-python3 wireshark-common tree
 
 # Poetry
 curl -sSL https://install.python-poetry.org | python3 -
