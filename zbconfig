@@ -1,7 +1,9 @@
-build_prefix:     _build
-threads:          6
-build_types:      ['r']
+build_prefix: cmake-build
+threads: 6
+build_types: ['r']
 install_dir_root: ~/local
+branch_wise_build: false
+nest_build_directory: false
 
 generator: Unix Makefiles
 cmake_cache:
