@@ -21,25 +21,44 @@ symlink() {
   fi
 }
 
+sudo apt update && sudo apt upgrade
 # ZSH
-sudo apt install -y zsh
+sudo apt install -y zsh git wget
 # Oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 # Plugins
-ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins
+ZSH_PLUGINS_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins
 mkdir -p "$ZSH_PLUGINS_DIR"
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
+  echo "-----> Installing zsh plugin 'zsh-autosuggestions'..."
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS_DIR"/zsh-autosuggestions
+fi
 if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
   echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
-  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS_DIR"/zsh-autosuggestions
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS_DIR"/zsh-syntax-highlighting
 fi
+if [ ! -d "$ZSH_PLUGINS_DIR/you-should-use" ]; then
+  echo "-----> Installing zsh plugin 'you-should-use'..."
+  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_PLUGINS_DIR"/you-should-use
+fi
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-bat" ]; then
+  echo "-----> Installing zsh plugin 'zsh-bat'..."
+  git clone https://github.com/fdellwing/zsh-bat.git "$ZSH_PLUGINS_DIR"/zsh-bat
+fi
+if [ ! -d "$ZSH_PLUGINS_DIR/autoswitch_virtualenv" ]; then
+  git clone https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git "$ZSH_PLUGINS_DIR"/autoswitch_virtualenv
+fi
+
+# bat: prettier cat
+sudo apt-get install -y bat
+sudo ln -s /bin/batcat /bin/bat
 
 # Install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
 # Backup old config files and symlink new ones
-for name in gitconfig gitignore zbconfig zshrc; do
+for name in gitconfig gitignore zbconfig zshrc config/terminator/config p10k.zsh; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
     backup "$target"
@@ -64,7 +83,37 @@ sudo snap connect cloudcompare:removable-media :removable-media
 sudo snap install cmake
 
 # Useful third parties
-sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip
+sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip python-is-python3 wireshark-common tree
+
+# Poetry
+curl -sSL https://install.python-poetry.org | python3 -
+if [ ! -d "$ZSH_PLUGINS_DIR/poetry" ]; then
+  echo "-----> Installing zsh plugin 'poetry'..."
+  mkdir "$ZSH_PLUGINS_DIR"/poetry
+  "$HOME"/.local/bin/poetry completions zsh > "$ZSH_PLUGINS_DIR"/poetry/_poetry
+fi
+
+# Fonts and theme
+P10K_REPO="https://github.com/romkatv/powerlevel10k-media/raw/master"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Regular.ttf" -o "/usr/share/fonts/MesloLGS NF Regular.ttf"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Bold.ttf" -o "/usr/share/fonts/MesloLGS NF Bold.ttf"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Italic.ttf" -o "/usr/share/fonts/MesloLGS NF Italic.ttf"
+sudo curl -sSL "$P10K_REPO/MesloLGS%20NF%20Bold%20Italic.ttf" -o "/usr/share/fonts/MesloLGS NF Bold Italic.ttf"
+
+curl -SL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip -o JetBrainsMono-2.304.zip
+unzip JetBrainsMono-2.304.zip "fonts/ttf/*.ttf" -d "JetBrainsMono"
+sudo cp JetBrainsMono/fonts/ttf/*.ttf /usr/share/fonts/
+rm JetBrainsMono-2.304.zip
+rm -r JetBrainsMono
+
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.gedit.preferences.editor scheme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas'
+
+# PDM dependencies
+sudo apt-get install -y sqlite3 libsqlite3-dev libpcap-dev xorg-dev libtbb-dev libgtk2.0-dev git-lfs python3 python3-yaml
 
 # Refresh the current terminal with the newly installed configuration
 exec zsh
