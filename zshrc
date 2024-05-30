@@ -96,15 +96,6 @@ alias scS="screen -S"
 alias gittoken="cat ~/gitlab | xclip -selection clipboard"
 alias cpp="rsync -a --info=progress2"
 
-teamconnect () {
-  TEAM_ID=$(cat ~/teamviewer/"$1".teamid)
-  if [[ "$(xclip -o -selection clipboard)" == "$TEAM_ID" ]]; then
-    tr -d '\n' < ~/teamviewer/"$1".teampwd | xclip -selection clipboard
-  else
-    echo "$TEAM_ID" | tr -d '\n' | xclip -selection clipboard
-  fi
-}
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
