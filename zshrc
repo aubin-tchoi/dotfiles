@@ -69,7 +69,6 @@ plugins=(
   zsh-bat
   copybuffer
   sudo
-  dirhistory
   history
   web-search
   themes
