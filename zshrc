@@ -78,6 +78,7 @@ plugins=(
   poetry
   z
   autoswitch_virtualenv
+  cp
 )
 
 function copydir {
@@ -89,7 +90,6 @@ source $ZSH/oh-my-zsh.sh
 alias scls="screen -ls"
 alias scr="screen -r"
 alias scS="screen -S"
-alias cpp="rsync -a --info=progress2"
 
 # User configuration
 
