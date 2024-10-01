@@ -85,7 +85,6 @@ function copydir {
   print -n $PWD | clipcopy
 }
 
-alias charm=pycharm-professional
 source $ZSH/oh-my-zsh.sh
 alias scls="screen -ls"
 alias scr="screen -r"
