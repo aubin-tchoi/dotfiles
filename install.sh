@@ -139,6 +139,9 @@ darwin() {
   # Install powerlevel10k
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
+  # Install Jetbrains's font
+  brew install --cask font-jetbrains-mono
+
   # Backup old config files and symlink new ones
   for name in gitconfig gitignore zshrc config/terminator/config p10k.zsh; do
     if [ ! -d "$name" ]; then
