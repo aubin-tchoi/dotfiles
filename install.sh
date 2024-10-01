@@ -158,6 +158,9 @@ darwin() {
     mkdir "$ZSH_PLUGINS_DIR"/poetry
     "$HOME"/.local/bin/poetry completions zsh > "$ZSH_PLUGINS_DIR"/poetry/_poetry
   fi
+
+  # iTerm2
+  brew install --cask iterm2
 }
 
 unameOut="$(uname -s)"
