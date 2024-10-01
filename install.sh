@@ -58,7 +58,7 @@ sudo ln -s /bin/batcat /bin/bat
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
 # Backup old config files and symlink new ones
-for name in gitconfig gitignore zbconfig zshrc config/terminator/config p10k.zsh; do
+for name in gitconfig gitignore zshrc config/terminator/config p10k.zsh; do
   if [ ! -d "$name" ]; then
     target="$HOME/.$name"
     backup "$target"
@@ -76,14 +76,9 @@ update-alternatives --set x-terminal-emulator /usr/bin/terminator
 
 # VSCode
 sudo snap install code --classic
-# CloudCompare
-sudo snap install cloudcompare --edge
-sudo snap connect cloudcompare:removable-media :removable-media
-# CMake
-sudo snap install cmake
 
 # Useful third parties
-sudo apt-get install -y curl wget mlocate htop git gnome-tweaks meld adwaita-icon-theme-full trash-cli xclip zip unzip python-is-python3 wireshark-common tree baobab
+sudo apt-get install -y curl wget mlocate htop git gnome-tweaks adwaita-icon-theme-full xclip zip unzip python-is-python3 tree baobab
 
 # Poetry
 curl -sSL https://install.python-poetry.org | python3 -
@@ -111,9 +106,6 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.gedit.preferences.editor scheme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
 gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas'
-
-# PDM dependencies
-sudo apt-get install -y sqlite3 libsqlite3-dev libpcap-dev xorg-dev libtbb-dev libgtk2.0-dev git-lfs python3 python3-yaml
 
 # Refresh the current terminal with the newly installed configuration
 exec zsh

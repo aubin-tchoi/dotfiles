@@ -90,7 +90,6 @@ source $ZSH/oh-my-zsh.sh
 alias scls="screen -ls"
 alias scr="screen -r"
 alias scS="screen -S"
-alias gittoken="cat ~/gitlab | xclip -selection clipboard"
 alias cpp="rsync -a --info=progress2"
 
 # User configuration
@@ -121,9 +120,6 @@ alias cpp="rsync -a --info=progress2"
 
 export PATH="$PATH:$HOME/local/diff-so-fancy"
 export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
-
-# source /opt/ros/noetic/setup.zsh
-# source ~/catkin_ws/devel/setup.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
