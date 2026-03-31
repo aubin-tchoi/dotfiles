@@ -1,13 +1,14 @@
-# `> ~/.` dotfiles
+# dotfiles
 
-## 🌺 Purpose
+## Purpose
 
-Automate the setup of a brand-new Ubuntu machine with some cool stuff like auto-suggestions or syntax highlighting, for
-instance.
+Automate the setup of a new machine (Linux or macOS) with zsh, oh-my-zsh, powerlevel10k, and useful plugins.
 
-## ⚙️ Installation
+App-specific config lives on dedicated branches:
+- `kitty` — Kitty terminal config
+- `zed` — Zed editor integration
 
-Clone this repo and run the installation script `install.sh`.
-This script adds symlink to the files in the cloned repository rather than copying configuration files, therefore
-updating the config can be done through a pull.
+## Installation
 
+Clone this repo and run `install.sh`. The script detects your OS and installs accordingly.
+Config files are symlinked so updates can be pulled in directly.

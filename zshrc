@@ -68,16 +68,11 @@ plugins=(
   you-should-use
   zsh-bat
   copybuffer
-  sudo
-  dirhistory
   history
-  web-search
   themes
-  python
-  pyenv
-  poetry
   z
   autoswitch_virtualenv
+  cp
 )
 
 function copydir {
@@ -86,10 +81,56 @@ function copydir {
 }
 
 source $ZSH/oh-my-zsh.sh
+
 alias scls="screen -ls"
 alias scr="screen -r"
 alias scS="screen -S"
-alias cpp="rsync -a --info=progress2"
+alias python='python3'
+
+alias kcl="kubectl"
+
+function kclb() {
+  kubectl exec -it $1 -- bash
+}
+
+function kclp() {
+  kubectl get pods --no-headers
+}
+
+function kscp_out() {
+  if [ -z "$3" ]; then
+    echo "Usage: kscp_out <pod_name> <local_file> <remote_file>"
+    return
+  fi
+  # run command and catch exit code
+  if ! kubectl cp "$2" "$(kubectl get pods | grep $1 | awk 'NR==1{print $1}')":"$3"
+  then
+    echo "Failed to copy $2 to $1:$3"
+  fi
+  echo "Copied $2 to $1:$3"
+}
+
+function kscp_in() {
+  if [ -z "$3" ]; then
+    echo "Usage: kscp_in <pod_name> <remote_file> <local_file>"
+    return
+  fi
+  # run command and catch exit code
+  if ! kubectl cp "$(kubectl get pods | grep $1 | awk 'NR==1{print $1}')":"$2" "$3"
+  then
+    echo "Failed to copy $1:$2 to $3"
+  fi
+  echo "Copied $1:$2 to $3"
+}
+
+function kclssh() {
+  if [ -z "$1" ]; then
+    echo "Usage: kclssh <pod_name>"
+    return
+  fi
+
+  kubectl exec -it "$(kubectl get pods | grep "$1" | awk 'NR==1{print $1}')" -- bash
+}
 
 # User configuration
 
@@ -117,8 +158,28 @@ alias cpp="rsync -a --info=progress2"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$PATH:$HOME/local/diff-so-fancy"
+export PATH="$PATH:/opt/homebrew/bin:$HOME/local/diff-so-fancy"
 export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias tf=terraform
+alias gal="gcloud auth login"
+alias gaf="gcloud auth application-default login"
+
+export PATH=$HOME/.local/bin:$PATH
+export HUSKY=0
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+eval "$(direnv hook $SHELL)"
