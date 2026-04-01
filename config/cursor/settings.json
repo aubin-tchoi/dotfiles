@@ -1,0 +1,33 @@
+{
+  "window.commandCenter": 1,
+  "files.autoSave": "afterDelay",
+  "editor.fontSize": 11,
+  "editor.fontFamily": "JetBrains Mono",
+  "terminal.integrated.fontLigatures": true,
+  "editor.stickyScroll.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.smartCommitChanges": "tracked",
+  "git.confirmSync": false,
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  },
+  "gotoNextPreviousMember.symbolKinds": ["function", "class", "method"],
+  "editor.cursorStyle": "block",
+  "editor.formatOnSave": true,
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.experimental.useTrueInlineView": true,
+  "search.useGlobalIgnoreFiles": true,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "typescript.updateImportsOnPaste.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports.ts": "explicit",
+    "source.sortImports": "always",
+    "source.removeUnusedImports": "always"
+  },
+  "workbench.colorTheme": "Eva Dark",
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "enabled"
+  },
+  "scm.workingSets.enabled": true,
+  "workbench.iconTheme": "catppuccin-frappe"
+}

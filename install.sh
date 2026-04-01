@@ -151,6 +151,14 @@ darwin() {
     fi
   done
 
+  # Cursor
+  CURSOR_DIR="$HOME/Library/Application Support/Cursor/User"
+  mkdir -p "$CURSOR_DIR"
+  for name in settings.json keybindings.json; do
+    backup "$CURSOR_DIR/$name"
+    symlink "$PWD/config/cursor/$name" "$CURSOR_DIR/$name"
+  done
+
   # Poetry
   curl -sSL https://install.python-poetry.org | python3 -
   if [ ! -d "$ZSH_PLUGINS_DIR/poetry" ]; then
