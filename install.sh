@@ -59,7 +59,7 @@ linux() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
   # Backup old config files and symlink new ones
-  for name in gitconfig gitignore zshrc config/terminator/config p10k.zsh; do
+  for name in gitconfig gitignore zshrc config/terminator/config tmux.conf p10k.zsh; do
     if [ ! -d "$name" ]; then
       target="$HOME/.$name"
       backup "$target"
@@ -143,7 +143,7 @@ darwin() {
   brew install --cask font-jetbrains-mono
 
   # Backup old config files and symlink new ones
-  for name in gitconfig gitignore zshrc p10k.zsh; do
+  for name in gitconfig gitignore zshrc tmux.conf p10k.zsh; do
     if [ ! -d "$name" ]; then
       target="$HOME/.$name"
       backup "$target"
