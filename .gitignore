@@ -4,3 +4,15 @@ out
 gen
 
 .vscode
+
+# Local state and private configuration
+.DS_Store
+*.bak
+*.backup
+*.backup.*
+*.local
+.env
+.env.*
+*.rayconfig
+*.db
+*.db-*

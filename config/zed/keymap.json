@@ -1,0 +1,511 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "cmd-0": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "cmd-0": "git_panel::ToggleFocus",
+      "cmd-1": "project_panel::ToggleFocus",
+      "cmd-shift-d": "git::Branch"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "cmd-0": "git_panel::ToggleFocus",
+      "cmd-1": "project_panel::ToggleFocus",
+      "cmd-shift-d": "git::Branch"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "cmd-0": "git_panel::ToggleFocus",
+      "cmd-1": "project_panel::ToggleFocus",
+      "cmd-shift-d": "git::Branch"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+      "cmd-0": "git_panel::ToggleFocus",
+      "cmd-1": "project_panel::ToggleFocus",
+      "cmd-shift-d": "git::Branch"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "cmd-0": "git_panel::ToggleFocus",
+      "cmd-1": "project_panel::ToggleFocus",
+      "cmd-shift-a": "editor::Hover",
+      "cmd-shift-d": "git::Branch"
+    }
+  },
+  {
+    "context": "GitPanel && ChangesList",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-0": "git_panel::ToggleFocus",
+      "cmd-alt-m": "git::Amend",
+      "cmd-shift-k": "git::Push",
+      "ctrl-t": "git::Pull"
+    }
+  },
+  {
+    "context": "!ContextEditor > Editor && mode == full",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-enter": "editor::OpenExcerpts",
+      "shift-enter": "editor::ExpandExcerpts",
+      "cmd-alt-enter": "editor::OpenExcerptsSplit",
+      "cmd-f8": "editor::GoToHunk",
+      "cmd-shift-f8": "editor::GoToPreviousHunk",
+      "ctrl-enter": "assistant::InlineAssist",
+      "ctrl-:": "editor::ToggleInlayHints"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-cmd-shift-e": "editor::ToggleEditPrediction"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-cmd-shift-e": "editor::ToggleEditPrediction"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-cmd-e": "git::Blame"
+    }
+  },
+  {
+    "context": "(GitPanel && ChangesList) || Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-k": "git::Commit"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-shift-z": "editor::ScrollCursorTop"
+    }
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "ctrl-cmd-shift-down": "editor::GoToNextChange"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-n": "editor::GoToDeclaration"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-1": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-d": "git::Branch"
+    }
+  },
+  {
+    "context": "CommitEditor > Editor",
+    "bindings": {
+      "cmd-shift-j": "git::GenerateCommitMessage"
+    }
+  },
+  {
+    "context": "GitCommit > Editor",
+    "bindings": {
+      "cmd-shift-j": "git::GenerateCommitMessage"
+    }
+  },
+  {
+    "context": "GitCommit > Editor",
+    "bindings": {
+      "alt-tab": null
+    }
+  },
+  {
+    "context": "CommitEditor > Editor",
+    "bindings": {
+      "alt-tab": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-f12": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-b": "editor::GoToDefinition"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "f12": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-shift-n": "editor::GoToTypeDefinition"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-f12": null
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-b f": "editor::FindAllReferences"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-cmd-f7": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-f7": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-shift-f12": null
+    }
+  },
+  {
+    "bindings": {
+      "cmd-=": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-=": "editor::UnfoldLines"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-cmd-[": "editor::MoveToEnclosingBracket"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-cmd-]": "editor::MoveToEnclosingBracket"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-cmd-[": "editor::MoveToEnclosingBracket"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-n": null
+    }
+  },
+  {
+    "context": "(Workspace && !Terminal)",
+    "bindings": {
+      "cmd-shift-n": "workspace::NewFile"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-cmd-shift-l": "zed::OpenKeymap"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-b cmd-k": "editor::BlameHover"
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "cmd-r": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-cmd-r": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "ctrl-cmd-a": "editor::ShowSignatureHelp"
+    }
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "cmd-p": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-cmd-b": null
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-cmd-b": "editor::OpenPermalinkToLine"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-shift-e": "git::OpenModifiedFiles"
+    }
+  },
+  {
+    "context": "((Editor && !agent_diff) && !AgentPanel)",
+    "bindings": {
+      "ctrl-cmd-down": "git::UnstageAndNext"
+    }
+  },
+  {
+    "context": "((Editor && !agent_diff) && !AgentPanel)",
+    "bindings": {
+      "ctrl-cmd-left": "git::Restore"
+    }
+  },
+  {
+    "context": "((Editor && !agent_diff) && !AgentPanel)",
+    "bindings": {
+      "ctrl-cmd-right": "git::StageAndNext"
+    }
+  },
+  {
+    "context": "!ContextEditor > (Editor && mode == full)",
+    "bindings": {
+      "cmd-shift-e": "pane::RevealInProjectPanel"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-c": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-k": null
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "ctrl-g shift-up": null
+    }
+  },
+  {
+    "context": "(GitPanel || ChangesList)",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-cmd-shift-k": "git::ForcePush"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-4": "diagnostics::Deploy"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-6": "diagnostics::Deploy"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-4": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-7": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-4": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-7": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "OutlinePanel",
+    "bindings": {
+      "cmd-4": "workspace::CloseActiveDock"
+    }
+  },
+  {
+    "context": "OutlinePanel",
+    "unbind": {
+      "cmd-7": "workspace::CloseActiveDock"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-4": "diagnostics::Deploy"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "cmd-6": "diagnostics::Deploy"
+    }
+  },
+  {
+    "context": "Diagnostics > Editor",
+    "bindings": {
+      "cmd-4": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Diagnostics > Editor",
+    "unbind": {
+      "cmd-6": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-4": [
+        "workspace::ActivatePane",
+        5
+      ]
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-6": [
+        "workspace::ActivatePane",
+        5
+      ]
+    }
+  },
+  {
+    "bindings": {
+      "cmd-6": "outline_panel::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-6": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-shift-b": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-7": "git::BranchDiff"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "cmd-b": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-k cmd-b": "editor::BlameHover"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-a": "editor::SelectAll"
+    }
+  },
+  {
+    "context": "GitPanel && ChangesList && !GitBranchSelector && !GitRepositorySelector",
+    "bindings": {
+      "ctrl-alt-space": "git::ToggleStaged"
+    }
+  },
+  {
+    "context": "GitPanel && ChangesList && !GitBranchSelector && !GitRepositorySelector",
+    "unbind": {
+      "alt-cmd-y": "git::ToggleStaged"
+    }
+  },
+  {
+    "context": "Editor && !agent_diff && !AgentPanel",
+    "bindings": {
+      "ctrl-alt-space": "git::ToggleStaged"
+    }
+  },
+  {
+    "context": "Editor && !agent_diff && !AgentPanel",
+    "unbind": {
+      "alt-cmd-y": "git::ToggleStaged"
+    }
+  }
+]

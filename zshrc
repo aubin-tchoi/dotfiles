@@ -81,15 +81,35 @@ function copydir {
 }
 
 source $ZSH/oh-my-zsh.sh
-
 alias scls="screen -ls"
 alias scr="screen -r"
 alias scS="screen -S"
 alias python='python3'
 
+function color {
+  case $1 in
+  green)
+  echo -e "\033]6;1;bg;red;brightness;57\a"
+  echo -e "\033]6;1;bg;green;brightness;197\a"
+  echo -e "\033]6;1;bg;blue;brightness;77\a"
+  ;;
+  red)
+  echo -e "\033]6;1;bg;red;brightness;270\a"
+  echo -e "\033]6;1;bg;green;brightness;60\a"
+  echo -e "\033]6;1;bg;blue;brightness;83\a"
+  ;;
+  orange)
+  echo -e "\033]6;1;bg;red;brightness;227\a"
+  echo -e "\033]6;1;bg;green;brightness;143\a"
+  echo -e "\033]6;1;bg;blue;brightness;10\a"
+  ;;
+  esac
+}
+
 alias kcl="kubectl"
 
 function kclb() {
+  color red
   kubectl exec -it $1 -- bash
 }
 
@@ -129,6 +149,7 @@ function kclssh() {
     return
   fi
 
+  color red
   kubectl exec -it "$(kubectl get pods | grep "$1" | awk 'NR==1{print $1}')" -- bash
 }
 
@@ -168,12 +189,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
 alias tf=terraform
+alias g5="codex --model gpt-5-codex --sandbox danger-full-access --dangerously-bypass-approvals-and-sandbox"
 alias gal="gcloud auth login"
 alias gaf="gcloud auth application-default login"
 
 export PATH=$HOME/.local/bin:$PATH
-export HUSKY=0
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -182,4 +211,13 @@ export HUSKY=0
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-eval "$(direnv hook $SHELL)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit
+compinit
+
+# Private credentials and machine-specific overrides.
+[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local

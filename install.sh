@@ -1,25 +1,6 @@
 #!/bin/bash
 
-# Define a function which rename a `target` file to `target.backup` if the file
-# exists and if it's a 'real' file, ie not a symlink
-backup() {
-  target=$1
-  if [ -e "$target" ]; then
-    if [ ! -L "$target" ]; then
-      mv "$target" "$target.backup"
-      echo "-----> Moved your old $target config file to $target.backup"
-    fi
-  fi
-}
-
-symlink() {
-  file=$1
-  link=$2
-  if [ ! -e "$link" ]; then
-    echo "-----> Symlinking your new $link"
-    ln -s "$file" "$link"
-  fi
-}
+DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 linux() {
   sudo apt update && sudo apt upgrade
@@ -59,14 +40,7 @@ linux() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
 
   # Backup old config files and symlink new ones
-  mkdir -p "$HOME/.config/kitty"
-  for name in gitconfig gitignore zshrc config/terminator/config config/kitty/kitty.conf config/kitty/current-theme.conf tmux.conf p10k.zsh; do
-    if [ ! -d "$name" ]; then
-      target="$HOME/.$name"
-      backup "$target"
-      symlink "$PWD"/$name "$target"
-    fi
-  done
+  bash "$DOTFILES_DIR/scripts/link.sh"
 
   # Compilation stuff
   sudo apt-get install -y build-essential libtool linux-source linux-headers-"$(uname -r)" distcc ccache ninja-build
@@ -144,14 +118,7 @@ darwin() {
   brew install --cask font-jetbrains-mono
 
   # Backup old config files and symlink new ones
-  mkdir -p "$HOME/.config/kitty"
-  for name in gitconfig gitignore zshrc config/kitty/kitty.conf config/kitty/current-theme.conf tmux.conf p10k.zsh; do
-    if [ ! -d "$name" ]; then
-      target="$HOME/.$name"
-      backup "$target"
-      symlink "$PWD"/$name "$target"
-    fi
-  done
+  bash "$DOTFILES_DIR/scripts/link.sh"
 
   # Poetry
   curl -sSL https://install.python-poetry.org | python3 -
