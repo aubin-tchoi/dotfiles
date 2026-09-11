@@ -1,0 +1,42 @@
+[
+  {
+    "name": "1password",
+    "title": "1Password",
+    "url": "https://www.raycast.com/khasbilegt/1password"
+  },
+  {
+    "name": "chatgpt",
+    "title": "ChatGPT",
+    "url": "https://www.raycast.com/abielzulio/chatgpt"
+  },
+  {
+    "name": "coffee",
+    "title": "Coffee",
+    "url": "https://www.raycast.com/mooxl/coffee"
+  },
+  {
+    "name": "color-picker",
+    "title": "Color Picker",
+    "url": "https://www.raycast.com/thomas/color-picker"
+  },
+  {
+    "name": "github",
+    "title": "GitHub",
+    "url": "https://www.raycast.com/raycast/github"
+  },
+  {
+    "name": "notion",
+    "title": "Notion",
+    "url": "https://www.raycast.com/notion/notion"
+  },
+  {
+    "name": "slack",
+    "title": "Slack",
+    "url": "https://www.raycast.com/mommertf/slack"
+  },
+  {
+    "name": "spotify-player",
+    "title": "Spotify Player",
+    "url": "https://www.raycast.com/mattisssa/spotify-player"
+  }
+]

@@ -1,0 +1,63 @@
+name: Check dotfiles
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install test dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y zsh shellcheck
+      - name: Check Ubuntu package names
+        if: runner.os == 'Linux'
+        run: |
+          for manifest in packages/ubuntu.txt packages/ubuntu-full.txt; do
+            while IFS= read -r package; do
+              apt-cache show "$package" >/dev/null || exit
+            done < "$manifest"
+          done
+      - name: Check syntax
+        run: |
+          for script in install.sh scripts/*.sh .githooks/pre-commit tests/fake_nvm.sh; do
+            bash -n "$script" || exit
+          done
+          for script in zshrc zprofile p10k.zsh; do
+            zsh -n "$script" || exit
+          done
+          python3 scripts/check-json.py
+          git diff --check
+      - name: Lint installer scripts
+        if: runner.os == 'Linux'
+        run: shellcheck -x -e SC1090,SC1091 install.sh scripts/*.sh .githooks/pre-commit
+      - name: Test isolated setup and restore
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -m unittest discover -s tests -v
+
+  secrets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install verified scanner release
+        run: bash scripts/install-gitleaks.sh
+      - name: Scan branch history
+        run: bash scripts/check-secrets.sh
