@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -80,7 +80,21 @@ function copydir {
   print -n $PWD | clipcopy
 }
 
-source $ZSH/oh-my-zsh.sh
+# Homebrew must be on PATH before shell plugins load (Apple Silicon or Intel).
+if [[ -z "${HOMEBREW_PREFIX:-}" ]]; then
+  for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+    if [[ -x "$brew_bin" ]]; then
+      eval "$("$brew_bin" shellenv)"
+      break
+    fi
+  done
+  unset brew_bin
+fi
+
+typeset -U path
+path=("$HOME/.local/bin" "$HOME/.bun/bin" "$HOME/.opencode/bin" $path)
+fpath=("${ZDOTDIR:-$HOME}/.zfunc" $fpath)
+source "$ZSH/oh-my-zsh.sh"
 alias scls="screen -ls"
 alias scr="screen -r"
 alias scS="screen -S"
@@ -179,45 +193,36 @@ function kclssh() {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$PATH:/opt/homebrew/bin:$HOME/local/diff-so-fancy"
 export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f "${ZDOTDIR:-$HOME}/.p10k.zsh" ]] || source "${ZDOTDIR:-$HOME}/.p10k.zsh"
 
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+# The optional full profile installs the SDK through Homebrew.
+if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+  gcloud_dir="$HOMEBREW_PREFIX/share/google-cloud-sdk"
+  [[ ! -f "$gcloud_dir/path.zsh.inc" ]] || source "$gcloud_dir/path.zsh.inc"
+  [[ ! -f "$gcloud_dir/completion.zsh.inc" ]] || source "$gcloud_dir/completion.zsh.inc"
+  unset gcloud_dir
+fi
 alias tf=terraform
 alias g5="codex --model gpt-5-codex --sandbox danger-full-access --dangerously-bypass-approvals-and-sandbox"
 alias gal="gcloud auth login"
 alias gaf="gcloud auth application-default login"
-
-export PATH=$HOME/.local/bin:$PATH
-
-# opencode
-export PATH=$HOME/.opencode/bin:$PATH
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
-fpath=(~/.zfunc $fpath)
-autoload -Uz compinit
-compinit
-
 # Private credentials and machine-specific overrides.
-[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+[[ ! -f "${ZDOTDIR:-$HOME}/.zshrc.local" ]] || source "${ZDOTDIR:-$HOME}/.zshrc.local"

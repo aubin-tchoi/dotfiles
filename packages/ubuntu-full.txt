@@ -1,0 +1,13 @@
+build-essential
+cmake
+libtool
+ninja-build
+ccache
+neovim
+postgresql-client
+redis-tools
+protobuf-compiler
+poppler-utils
+source-highlight
+pipx
+terminator

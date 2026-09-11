@@ -1,39 +1,24 @@
 #!/bin/bash
 set -euo pipefail
+# shellcheck source=scripts/lib.sh
+source "$(dirname -- "${BASH_SOURCE[0]}")/lib.sh"
+target_dir="${1:-$target_dir}"
 
-dotfiles_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-target_dir="${1:-$HOME}"
+# Validate the entire manifest before replacing any existing configuration.
+links="$(config_links)"
+while IFS=$'\t' read -r source target; do
+  [[ -f "$source" ]] || fail "Missing configuration: $source"
+done <<< "$links"
 
-link_config() {
-  local source="$dotfiles_dir/$1"
-  local target="$target_dir/.$1"
-  local backup
-
-  if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
-    return
-  fi
-
+while IFS=$'\t' read -r source target; do
+  [[ -L "$target" && "$target" -ef "$source" ]] && continue
   mkdir -p "$(dirname "$target")"
   if [[ -e "$target" || -L "$target" ]]; then
     backup="$target.backup.$(date +%Y%m%d%H%M%S).$$"
+    [[ ! -e "$backup" && ! -L "$backup" ]] || fail "Backup already exists: $backup"
     mv "$target" "$backup"
-    echo "Backed up $target to $backup"
+    printf 'Backed up %s to %s\n' "$target" "$backup"
   fi
   ln -s "$source" "$target"
-  echo "Linked $target"
-}
-
-for name in gitconfig gitignore zshrc zprofile p10k.zsh tmux.conf \
-  config/htop/htoprc \
-  config/kitty/kitty.conf config/kitty/current-theme.conf \
-  config/kitty/GruvBox_DarkHard.conf \
-  config/zed/settings.json config/zed/keymap.json \
-  config/zellij/config.kdl config/ghostty/config \
-  config/ghostty/themes/catppuccin-frappe config/ghostty/themes/catppuccin-latte \
-  config/ghostty/themes/catppuccin-macchiato config/ghostty/themes/catppuccin-mocha; do
-  link_config "$name"
-done
-
-if [[ "$(uname -s)" == Linux ]]; then
-  link_config config/terminator/config
-fi
+  printf 'Linked %s\n' "$target"
+done <<< "$links"

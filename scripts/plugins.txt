@@ -1,0 +1,5 @@
+zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions zsh-autosuggestions.plugin.zsh
+zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting zsh-syntax-highlighting.plugin.zsh
+you-should-use https://github.com/MichaelAquilina/zsh-you-should-use you-should-use.plugin.zsh
+zsh-bat https://github.com/fdellwing/zsh-bat zsh-bat.plugin.zsh
+autoswitch_virtualenv https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv autoswitch_virtualenv.plugin.zsh

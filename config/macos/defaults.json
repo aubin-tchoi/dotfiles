@@ -1,0 +1,8 @@
+[
+  {"domain": "NSGlobalDomain", "key": "KeyRepeat", "type": "float", "value": 2},
+  {"domain": "NSGlobalDomain", "key": "InitialKeyRepeat", "type": "float", "value": 25},
+  {"domain": "NSGlobalDomain", "key": "com.apple.swipescrolldirection", "type": "boolean", "value": true},
+  {"domain": "com.apple.dock", "key": "autohide", "type": "boolean", "value": true},
+  {"domain": "com.apple.finder", "key": "FXPreferredViewStyle", "type": "string", "value": "Nlsv"},
+  {"domain": "com.apple.AppleMultitouchTrackpad", "key": "Clicking", "type": "boolean", "value": false}
+]

@@ -16,3 +16,4 @@ gen
 *.rayconfig
 *.db
 *.db-*
+__pycache__/
